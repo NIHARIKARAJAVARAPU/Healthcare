@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { submitInteraction, updateField, updateListField } from "../features/interactions/interactionSlice";
+import { submitInteraction } from "../features/interactions/interactionSlice";
 
 const interactionTypes = ["Meeting", "Call", "Email", "Conference", "Virtual Visit"];
 const sentiments = ["Positive", "Neutral", "Negative"];
@@ -22,26 +22,18 @@ export default function LogInteractionForm() {
     <form className="interaction-form" onSubmit={onSubmit}>
       <div className="section-heading">
         <h2>Interaction Details</h2>
+        <p>Filled through AI Assistant only</p>
       </div>
 
       <div className="grid-two">
         <label>
           <span>HCP Name</span>
-          <input
-            value={form.hcp_name}
-            onChange={(event) => dispatch(updateField({ field: "hcp_name", value: event.target.value }))}
-            placeholder="Search or select HCP..."
-          />
+          <input value={form.hcp_name} readOnly placeholder="Search or select HCP..." />
         </label>
 
         <label>
           <span>Interaction Type</span>
-          <select
-            value={form.interaction_type}
-            onChange={(event) =>
-              dispatch(updateField({ field: "interaction_type", value: event.target.value }))
-            }
-          >
+          <select value={form.interaction_type} disabled>
             {interactionTypes.map((type) => (
               <option key={type}>{type}</option>
             ))}
@@ -52,60 +44,29 @@ export default function LogInteractionForm() {
       <div className="grid-two">
         <label>
           <span>Date and Time</span>
-          <input
-            type="datetime-local"
-            value={form.interaction_datetime}
-            onChange={(event) =>
-              dispatch(updateField({ field: "interaction_datetime", value: event.target.value }))
-            }
-          />
+          <input type="datetime-local" value={form.interaction_datetime} readOnly />
         </label>
 
         <label>
           <span>Attendees</span>
-          <input
-            value={parseList(form.attendees)}
-            onChange={(event) =>
-              dispatch(updateListField({ field: "attendees", value: event.target.value }))
-            }
-            placeholder="Enter names..."
-          />
+          <input value={parseList(form.attendees)} readOnly placeholder="Enter names..." />
         </label>
       </div>
 
       <label>
         <span>Topics Discussed</span>
-        <textarea
-          rows="4"
-          value={form.topics_discussed}
-          onChange={(event) =>
-            dispatch(updateField({ field: "topics_discussed", value: event.target.value }))
-          }
-          placeholder="Discussion points..."
-        />
+        <textarea rows="4" value={form.topics_discussed} readOnly placeholder="Discussion points..." />
       </label>
 
       <div className="grid-two">
         <label>
           <span>Materials Shared</span>
-          <input
-            value={parseList(form.materials_shared)}
-            onChange={(event) =>
-              dispatch(updateListField({ field: "materials_shared", value: event.target.value }))
-            }
-            placeholder="Brochure, deck..."
-          />
+          <input value={parseList(form.materials_shared)} readOnly placeholder="Brochure, deck..." />
         </label>
 
         <label>
           <span>Samples Distributed</span>
-          <input
-            value={parseList(form.samples_distributed)}
-            onChange={(event) =>
-              dispatch(updateListField({ field: "samples_distributed", value: event.target.value }))
-            }
-            placeholder="Samples..."
-          />
+          <input value={parseList(form.samples_distributed)} readOnly placeholder="Samples..." />
         </label>
       </div>
 
@@ -113,12 +74,7 @@ export default function LogInteractionForm() {
         <span>HCP Sentiment</span>
         <div className="pill-row">
           {sentiments.map((item) => (
-            <button
-              key={item}
-              type="button"
-              className={form.sentiment === item ? "pill active" : "pill"}
-              onClick={() => dispatch(updateField({ field: "sentiment", value: item }))}
-            >
+            <button key={item} type="button" className={form.sentiment === item ? "pill active" : "pill"} disabled>
               {item}
             </button>
           ))}
@@ -127,46 +83,24 @@ export default function LogInteractionForm() {
 
       <label>
         <span>Outcomes</span>
-        <textarea
-          rows="3"
-          value={form.outcomes}
-          onChange={(event) => dispatch(updateField({ field: "outcomes", value: event.target.value }))}
-          placeholder="Outcomes..."
-        />
+        <textarea rows="3" value={form.outcomes} readOnly placeholder="Outcomes..." />
       </label>
 
       <div className="grid-two">
         <label>
           <span>Follow-up Actions</span>
-          <input
-            value={parseList(form.follow_up_actions)}
-            onChange={(event) =>
-              dispatch(updateListField({ field: "follow_up_actions", value: event.target.value }))
-            }
-            placeholder="Follow-up..."
-          />
+          <input value={parseList(form.follow_up_actions)} readOnly placeholder="Follow-up..." />
         </label>
 
         <label>
           <span>Next Best Step</span>
-          <input
-            value={form.next_step}
-            onChange={(event) => dispatch(updateField({ field: "next_step", value: event.target.value }))}
-            placeholder="Next step..."
-          />
+          <input value={form.next_step} readOnly placeholder="Next step..." />
         </label>
       </div>
 
       <label>
         <span>Compliance Notes</span>
-        <textarea
-          rows="3"
-          value={form.compliance_notes}
-          onChange={(event) =>
-            dispatch(updateField({ field: "compliance_notes", value: event.target.value }))
-          }
-          placeholder="Compliance notes..."
-        />
+        <textarea rows="3" value={form.compliance_notes} readOnly placeholder="Compliance notes..." />
       </label>
 
       <div className="suggestions-card">
