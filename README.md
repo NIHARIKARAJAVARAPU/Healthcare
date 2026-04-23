@@ -37,26 +37,26 @@ The AI assistant uses **LangGraph + Groq** to:
 
 ```text
 AI-First-CRM-HCP-Module/
-├── backend/
-│   ├── app/
-│   │   ├── agents/
-│   │   ├── api/routes/
-│   │   ├── core/
-│   │   ├── db/
-│   │   ├── models/
-│   │   ├── schemas/
-│   │   └── services/
-│   ├── .env.example
-│   └── requirements.txt
-├── frontend/
-│   ├── src/
-│   │   ├── app/
-│   │   ├── components/
-│   │   ├── features/interactions/
-│   │   └── styles/
-│   └── package.json
-├── docs/
-└── README.md
++-- backend/
+|   +-- app/
+|   |   +-- agents/
+|   |   +-- api/routes/
+|   |   +-- core/
+|   |   +-- db/
+|   |   +-- models/
+|   |   +-- schemas/
+|   |   \-- services/
+|   +-- .env.example
+|   \-- requirements.txt
++-- frontend/
+|   +-- src/
+|   |   +-- app/
+|   |   +-- components/
+|   |   +-- features/interactions/
+|   |   \-- styles/
+|   \-- package.json
++-- docs/
+\-- README.md
 ```
 
 ## 4. Step-by-step: from folder creation to execution
@@ -149,22 +149,3 @@ The frontend will start at:
 - `PUT /api/v1/interactions/{id}`: edit an existing interaction
 - `GET /api/v1/interactions`: list interactions
 - `POST /api/v1/agent/chat`: send chat text to the LangGraph assistant
-
-## 6. Important note
-
-In this environment, I could scaffold the project files, but I could not fully run the frontend because `node`/`npm` are not available here. The backend dependencies also require package installation, which depends on your local setup and Groq credentials.
-
-For the most beginner-friendly walkthrough, use:
-
-[docs/run-guide.md](C:\Users\NIHARIKA\Documents\Codex\2026-04-23-files-mentioned-by-the-user-instructions\docs\run-guide.md)
-
-## 7. Submission help
-
-If you want, the next step I can do is:
-
-1. prepare a **presentation-ready explanation** for this assignment
-2. add **PostgreSQL Docker setup**
-3. add **screenshots / demo script**
-4. make the UI even closer to your reference images
-
-
